@@ -20,40 +20,38 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-    <section class="articles" style="">
-        {% for article in articles %}
-            <article>
-                <h2>{{ article.title }}</h2>
-                <div class="metadata">Écrit
-                    le {{ article.createdAt | date('d m y') }} à {{ article.createdAt | date('H:i') }} dans la
-                    catégorie {{ article.category.title }}</div>
-                <div class="col-md-8" style="display: block;
+            <section class="articles" style="">
+                {% for article in articles %}
+                    <article>
+                        <h2>{{ article.title }}</h2>
+                        <div class="metadata">Écrit
+                            le {{ article.createdAt | date('d m y') }} à {{ article.createdAt | date('H:i') }} dans la
+                            catégorie {{ article.category.title }}</div>
+                        <div class="col-md-8" style="display: block;
     margin-left: auto;
     margin-right: auto">
-                    <img src="{{ article.image }}" alt="card-img-top"
-                         style="width: 100%; height: auto; padding-top: 20px ; padding-bottom: 20px;">
+                            <img src="{{ article.image }}" alt="card-img-top"
+                                 style="width: 100%; height: auto; padding-top: 20px ; padding-bottom: 20px;">
 
-                </div>
-                <div class="content" style="padding-top: 20px ; padding-bottom: 20px;">
-                    {{ article.description | raw }}
-                    <a href="{{ path('article_show', {'id':article.id }) }}" class="btn btn-primary">Lire la suite</a>
-                </div>
-            </article>
+                        </div>
+                        <div class="content" style="padding-top: 20px ; padding-bottom: 20px;">
+                            {{ article.description | raw }}
+                            <a href="{{ path('article_show', {'id':article.id }) }}" class="btn btn-primary">Lire la
+                                suite</a>
+                        </div>
+                    </article>
 
-        {% endfor %}
-    </section>
+                {% endfor %}
+            </section>
         </div>
 
         <div class="col col-md-4">
-                <p>Mes publications sur instagram </p>
+            <p>Mes publications instagram </p>
             {% for media in medias %}
                 <div>
-                    <img style=" width: 60%;  height: auto; padding-bottom: 10px" class='img-responsive photo-thumb' src=' {{media }}' alt='#'>
-
+                    <img style=" width: 60%;  height: auto; padding-bottom: 20px" class='img-responsive photo-thumb'
+                         src=' {{ media }}' alt='#'>
                 </div>
-
-
-
             {% endfor %}
         </div>
     </div>

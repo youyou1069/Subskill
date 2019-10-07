@@ -33,13 +33,13 @@ class ArticleController extends AbstractController {
 	 */
 	public function __construct( ArticleRepository $repo, ObjectManager $sm ) {
 		$this->repo = $repo;
-		$this->em = $sm;
+		$this->em   = $sm;
 	}
+
 	/**
 	 * @Route("", name="home")
 	 */
-	public function homeAction(): Response
-	{
+	public function homeAction(): Response {
 		return $this->redirectToRoute( 'article_index' );
 	}
 
@@ -47,6 +47,7 @@ class ArticleController extends AbstractController {
 	 * @Route("article", name="article_index")
 	 * @param ArticleRepository $repo
 	 * @param Request $request
+	 *
 	 * @return Response
 	 */
 	public function indexAction( ArticleRepository $repo, Request $request ): Response {
@@ -54,51 +55,41 @@ class ArticleController extends AbstractController {
 		$form   = $this->createForm( ArticleSearchType::class, $search );
 		$form->handleRequest( $request );
 		if ( $form->isSubmitted() && $form->isValid() ) {
-			$articles = $repo->findAllSearch( $search );
+			$articles  = $repo->findAllSearch( $search );
 			$instagram = new Instagram();
-			$obj = $instagram->index();
-			$medias=[];
-			foreach ($obj['data'] as $post){
-				$pic_src    =str_replace("http://", 'https://', $post['images']['standard_resolution']['url']);
-				$medias[]   = $pic_src;
+			$obj       = $instagram->index();
+			$medias    = [];
+			foreach ( $obj['data'] as $post ) {
+				$pic_src  = str_replace( "http://", 'https://', $post['images']['standard_resolution']['url'] );
+				$medias[] = $pic_src;
 			}
 
 			return $this->render( 'article/index.html.twig', [
 				'articles' => $articles,
-				'medias' => $medias,
+				'medias'   => $medias,
 				'form'     => $form->createView()
 			] );
-			}
-		$articles = $repo->findAllArticle();
+		}
+		$articles  = $repo->findAllArticle();
 		$instagram = new Instagram();
-		$obj = $instagram->index();
-		$medias=[];
-		foreach ($obj['data'] as $post){
-			$pic_src    =str_replace("http://", 'https://', $post['images']['standard_resolution']['url']);
-			$medias[]   = $pic_src;
+		$obj       = $instagram->index();
+		$medias    = [];
+		foreach ( $obj['data'] as $post ) {
+			$pic_src  = str_replace( "http://", 'https://', $post['images']['standard_resolution']['url'] );
+			$medias[] = $pic_src;
 		}
 
 		return $this->render( 'article/index.html.twig', [
 			'articles' => $articles,
-			'medias' => $medias,
+			'medias'   => $medias,
 			'form'     => $form->createView()
 		] );
 	}
 
-
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * @Route("article/new", name="article_new", methods={"GET","POST"})
 	 * @param Request $request
+	 *
 	 * @return Response
 	 * @throws Exception
 	 */
@@ -124,6 +115,7 @@ class ArticleController extends AbstractController {
 	/**
 	 * @Route("article/{id}", name="article_show", methods={"GET"})
 	 * @param Article $article
+	 *
 	 * @return Response
 	 */
 	public function showAction( Article $article ): Response {
@@ -136,6 +128,7 @@ class ArticleController extends AbstractController {
 	 * @Route("article/{id}/edit", name="article_edit", methods={"GET","POST"})
 	 * @param Request $request
 	 * @param Article $article
+	 *
 	 * @return Response
 	 */
 	public function editAction( Request $request, Article $article ): Response {
@@ -158,6 +151,7 @@ class ArticleController extends AbstractController {
 	 * @Route("article/{id}", name="article_delete", methods={"DELETE"})
 	 * @param Request $request
 	 * @param Article $article
+	 *
 	 * @return Response
 	 */
 	public function deleteAction( Request $request, Article $article ): Response {
