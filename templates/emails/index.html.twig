@@ -1,0 +1,36 @@
+<html lang="fr">
+    <body style="font-family: Georgia, serif; color: maroon ">
+        <section >
+                <text >Bonjour</text>
+                <table>
+                    <tr>
+                        <td>Civilité</td>
+                        <td >{{ contact.gender }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nom</td>
+                        <td >{{ contact.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prénom</td>
+                        <td >{{ contact.firstName }}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Email</td>
+                        <td >{{ contact.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Objet</td>
+                        <td >{{ contact.objet | nl2br}}</td>
+                    </tr>
+                    <tr>
+                        <td>Message</td>
+                        <td >{{ contact.message | nl2br}}</td>
+                    </tr>
+
+                </table>
+            </section>
+    </body>
+</html>

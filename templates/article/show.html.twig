@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body  %}
+
+    <article>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata">Écrit
+            le {{ article.createdAt | date('d m y') }} à {{ article.createdAt | date('H:i') }} dans la
+            catégorie {{ article.category.title }}</div>
+        <div class="col-md-8" style="display: block;
+    margin-left: auto;
+    margin-right: auto">
+            <img src="{{ article.image }}" alt="card-img-top"
+                 style="width: 100%; height: auto; padding-top: 20px ; padding-bottom: 20px;">
+
+        </div>
+        <div class="content" style="padding-top: 20px ; padding-bottom: 20px;">
+            {{ article.description | raw }}
+        </div>
+    </article>
+
+   {% endblock %}

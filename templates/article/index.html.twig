@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles {% endblock %}
+
+{% block body %}
+    <div class="jumbotron" style="margin-top: 20px">
+        <div class="container">
+            {{ form_start(form) }}
+            <div class="form-row align-items-end">
+                <div class="col">{{ form_row(form.category) }}</div>
+
+                <div class="form-group">
+                    <div class="col">
+                        <button class="btn-primary">Filtrer</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <section class="articles" style="">
+        {% for article in articles %}
+            <article>
+                <h2>{{ article.title }}</h2>
+                <div class="metadata">Écrit
+                    le {{ article.createdAt | date('d m y') }} à {{ article.createdAt | date('H:i') }} dans la
+                    catégorie {{ article.category.title }}</div>
+                <div class="col-md-8" style="display: block;
+    margin-left: auto;
+    margin-right: auto">
+                    <img src="{{ article.image }}" alt="card-img-top"
+                         style="width: 100%; height: auto; padding-top: 20px ; padding-bottom: 20px;">
+
+                </div>
+                <div class="content" style="padding-top: 20px ; padding-bottom: 20px;">
+                    {{ article.description | raw }}
+                    <a href="{{ path('article_show', {'id':article.id }) }}" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </article>
+
+        {% endfor %}
+
+    </section>
+{% endblock %}

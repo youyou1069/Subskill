@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        {% block title %}
+            {% if title is defined %}{{ title }}{% else %} Bienvenue Subskill{% endif %}
+        {% endblock %}
+    </title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% endblock %}
+</head>
+<body>
+{% block nav %}
+    <header id="header">
+        <nav id="main-nav"
+             class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active ">
+                            <a class="nav-link" href="{{ path('article_index') }}">Accueil <span
+                                        class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+<div id="footer">
+    {% block footer %}
+
+
+
+        <div style="text-align: center">
+            <!-- Linkedin -->
+            <a target="_blank" title="Linkedin"
+               href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://tontonduweb.com/previews-warc/genieCivil/article1.html"
+               rel="nofollow"><img src="/plugins/iconrs/linkedin_icon.png" alt="Linkedin"/></a>
+            <!-- //Linkedin -->
+
+
+        </div>
+
+    {% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
