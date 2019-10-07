@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\ArticleSearch;
 use App\Form\ArticleSearchType;
 use App\Form\ArticleType;
+use App\Instagram\Instagram;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
@@ -54,20 +55,45 @@ class ArticleController extends AbstractController {
 		$form->handleRequest( $request );
 		if ( $form->isSubmitted() && $form->isValid() ) {
 			$articles = $repo->findAllSearch( $search );
+			$instagram = new Instagram();
+			$obj = $instagram->index();
+			$medias=[];
+			foreach ($obj['data'] as $post){
+				$pic_src    =str_replace("http://", 'https://', $post['images']['standard_resolution']['url']);
+				$medias[]   = $pic_src;
+			}
 
 			return $this->render( 'article/index.html.twig', [
 				'articles' => $articles,
+				'medias' => $medias,
 				'form'     => $form->createView()
 			] );
-		}
+			}
 		$articles = $repo->findAllArticle();
+		$instagram = new Instagram();
+		$obj = $instagram->index();
+		$medias=[];
+		foreach ($obj['data'] as $post){
+			$pic_src    =str_replace("http://", 'https://', $post['images']['standard_resolution']['url']);
+			$medias[]   = $pic_src;
+		}
 
 		return $this->render( 'article/index.html.twig', [
 			'articles' => $articles,
+			'medias' => $medias,
 			'form'     => $form->createView()
-
 		] );
 	}
+
+
+
+
+
+
+
+
+
+
 
 
 	/**

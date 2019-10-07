@@ -18,6 +18,8 @@
             {{ form_end(form) }}
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8">
     <section class="articles" style="">
         {% for article in articles %}
             <article>
@@ -39,6 +41,21 @@
             </article>
 
         {% endfor %}
-
     </section>
+        </div>
+
+        <div class="col col-md-4">
+                <p>Mes publications sur instagram </p>
+            {% for media in medias %}
+                <div>
+                    <img style=" width: 60%;  height: auto; padding-bottom: 10px" class='img-responsive photo-thumb' src=' {{media }}' alt='#'>
+
+                </div>
+
+
+
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}
