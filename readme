@@ -1,0 +1,15 @@
+- le projet a été réalisé avec symfony 4.1
+- Clonner le projet : https://github.com/youyou1069/Subskill.git
+- lancer composer Install
+- configurer l'accès à connexion à base de donnée dans le fichier .env
+- A l'aide de la console : 
+* créer la  base de donnée "subskill" avec la commande "php bin/console doctrine:database:create"
+* Make migration :  "php bin/console make:migration"
+* Migrate :  " php bin/console doctrine:migrations:migrate"
+* Loading Fixtures :  " php bin/console doctrine:fixtures:load "
+
+-Pour les emails configurer MAILER_URL dans .env
+
+Lancer le server : php bin/console server:run
+
+Enjoy!!
